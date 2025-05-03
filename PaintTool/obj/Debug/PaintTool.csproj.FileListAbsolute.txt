@@ -1,0 +1,20 @@
+E:\Zymo assingment\PaintTool\PaintTool\bin\PaintTool.dll.config
+E:\Zymo assingment\PaintTool\PaintTool\bin\PaintTool.dll
+E:\Zymo assingment\PaintTool\PaintTool\bin\PaintTool.pdb
+E:\Zymo assingment\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
+E:\Zymo assingment\PaintTool\PaintTool\obj\Debug\PaintTool.dll
+E:\Zymo assingment\PaintTool\PaintTool\obj\Debug\PaintTool.pdb
+E:\Zymo assingment\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.AssemblyReference.cache
+D:\Praveen\PaintTool\PaintTool\bin\PaintTool.dll.config
+D:\Praveen\PaintTool\PaintTool\bin\PaintTool.dll
+D:\Praveen\PaintTool\PaintTool\bin\PaintTool.pdb
+D:\Praveen\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.AssemblyReference.cache
+D:\Praveen\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
+D:\Praveen\PaintTool\PaintTool\obj\Debug\PaintTool.dll
+D:\Praveen\PaintTool\PaintTool\obj\Debug\PaintTool.pdb
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\bin\PaintTool.dll.config
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\bin\PaintTool.dll
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\bin\PaintTool.pdb
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.dll
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.pdb
