@@ -13,15 +13,38 @@
             margin: 3px;
             padding: 5px;
         }
+         .icon-button {
+        border: 1px solid black;
+        padding: 5px;
+        background-color: #efefef ;
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 4px;
+        }
+
+        .icon-button img {
+            width: 20px;
+            height: 20.5px;
+            
+        }       
+        .icon-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .icon-button:focus {
+            outline: none;
+            box-shadow: 0 0 2px 2px #90caf9;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
         <asp:FileUpload ID="FileUpload1" runat="server" />
         <asp:Button ID="BtnUpload" runat="server" Text="Upload" OnClick="BtnUpload_Click" />
         <asp:HiddenField ID="UploadedImagePath" runat="server" ClientIDMode="Static" />
-        <br /><br />
+        <asp:HiddenField ID="CanvasDataURL" runat="server" ClientIDMode="Static" />      
 
         <div class="toolbar">
             <button type="button" onclick="setTool('select')"><img src="/icons/select.svg" alt="Select" style="width: 20px; height: 20px;" /></button>
@@ -48,7 +71,10 @@
             <button type="button" onclick="undo()"><img src="/icons/undo.svg" alt="Undo" style="width: 20px; height: 20px;" /></button>
             <button type="button" onclick="redo()"><img src="/icons/redo.svg" alt="Redo" style="width: 20px; height: 20px;" /></button>
             <button type="button" onclick="clearAll()"><img src="/icons/clear.svg" alt="Clear All" style="width: 20px; height: 20px;" /></button>
-            <button type="button" onclick="downloadCanvas()"><img src="/icons/save.svg" alt="Save" style="width: 20px; height: 20px;" /></button>
+            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="BtnDownloadCanvas_Click" 
+                OnClientClick="return prepareCanvasDownload();" CssClass="icon-button">
+                <img src="/icons/save.svg" alt="Save" />
+            </asp:LinkButton>
         </div>
 
         <canvas id="drawingCanvas" width="1200" height="550"></canvas>
@@ -67,8 +93,8 @@
     let undoStack = [];
     let redoStack = [];
     let backgroundImage = null;
-    const MAX_STACK_SIZE = 50; 
-    let isStateSaving = false; 
+    const MAX_STACK_SIZE = 50;
+    let isStateSaving = false;
 
     function saveCanvasState() {
         if (isStateSaving) return;
@@ -85,11 +111,11 @@
                 };
             }
             const stateString = JSON.stringify(state);
-            
+
             if (undoStack.length === 0 || stateString !== undoStack[undoStack.length - 1]) {
                 undoStack.push(stateString);
                 if (undoStack.length > MAX_STACK_SIZE) undoStack.shift();
-                redoStack = []; 
+                redoStack = [];
             }
         } catch (e) {
             console.error('Error saving canvas state:', e);
@@ -123,9 +149,8 @@
         }
     }
 
-
     function undo() {
-        if (undoStack.length <= 1) return; 
+        if (undoStack.length <= 1) return;
         try {
             const currentState = undoStack.pop();
             redoStack.push(currentState);
@@ -158,7 +183,7 @@
                 canvas.setBackgroundImage(backgroundImage, canvas.renderAll.bind(canvas));
             }
             canvas.renderAll();
-            saveCanvasState(); 
+            saveCanvasState();
         } catch (e) {
             console.error('Error clearing canvas:', e);
         }
@@ -177,14 +202,13 @@
             canvas.isDrawingMode = true;
             canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
             canvas.freeDrawingBrush.color = color;
-        } if (tool === 'eraser') {
+        } else if (tool === 'eraser') {
             canvas.isDrawingMode = true;
             canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
             canvas.freeDrawingBrush.color = '#FFFFFF';
             canvas.freeDrawingBrush.width = 10;
             canvas.selection = false;
-        }
-        else if (tool === 'fill') {
+        } else if (tool === 'fill') {
             canvas.isDrawingMode = false;
             canvas.selection = false;
         }
@@ -217,9 +241,39 @@
             case 'dotCircle':
                 return new fabric.Group([], { left: x, top: y, originX: 'center', originY: 'center', selectable: false });
             case 'ellipseInEllipse':
-                const outer = new fabric.Ellipse({ left: x, top: y, rx: 0, ry: 0, ...commonProps, originX: 'center', originY: 'center' });
-                const inner = new fabric.Ellipse({ left: x, top: y, rx: 0, ry: 0, ...commonProps, originX: 'center', originY: 'center' });
-                return new fabric.Group([outer, inner], { left: x, top: y, originX: 'center', originY: 'center', selectable: false });
+                const outer = new fabric.Ellipse({
+                    left: x,
+                    top: y,
+                    rx: 0,
+                    ry: 0,
+                    ...commonProps,
+                    originX: 'center',
+                    originY: 'center',
+                    stroke: 'red',
+                    strokeWidth: 2,
+                    fill: '',
+                });
+
+                const inner = new fabric.Ellipse({
+                    left: x,
+                    top: y,
+                    rx: 0,
+                    ry: 0,
+                    ...commonProps,
+                    originX: 'center',
+                    originY: 'center',
+                    stroke: 'green',
+                    strokeWidth: 2,
+                    fill: '',
+                });
+
+                return new fabric.Group([outer, inner], {
+                    left: x,
+                    top: y,
+                    originX: 'center',
+                    originY: 'center',
+                    selectable: false
+                });
             case 'cross':
                 const line1 = new fabric.Line([x - 10, y - 10, x + 10, y + 10], { stroke: color, strokeWidth: 2, selectable: false });
                 const line2 = new fabric.Line([x + 10, y - 10, x - 10, y + 10], { stroke: color, strokeWidth: 2, selectable: false });
@@ -262,7 +316,8 @@
                     left: 0,
                     top: 0,
                     fill: '',
-                    stroke: color,
+                    stroke: 'Red',
+                    originX: 'center',
                     strokeWidth: 2,
                     selectable: false
                 });
@@ -270,7 +325,8 @@
                     left: 0,
                     top: 14,
                     fill: '',
-                    stroke: color,
+                    stroke: 'Green',
+                    originX: 'center',
                     strokeWidth: 2,
                     selectable: false
                 });
@@ -397,6 +453,20 @@
         }
     }
 
+    function prepareCanvasDownload() {
+        try {
+            const dataURL = canvas.toDataURL({
+                format: 'png',
+                quality: 1
+            });
+            document.getElementById('CanvasDataURL').value = dataURL;
+            return true; 
+        } catch (e) {
+            console.error('Error preparing canvas for download:', e);
+            return false; 
+        }
+    }
+
     canvas.on('mouse:down', function (opt) {
         if (currentTool === 'fill') {
             fillColor(opt.e);
@@ -436,17 +506,6 @@
         saveCanvasState();
     });
 
-    function downloadCanvas() {
-        try {
-            const link = document.createElement('a');
-            link.download = 'drawing.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        } catch (e) {
-            console.error('Error downloading canvas:', e);
-        }
-    }
-
     window.onload = function () {
         const imagePath = document.getElementById('UploadedImagePath').value;
         if (imagePath) {
@@ -455,7 +514,7 @@
                 const scaleY = canvas.height / img.height;
                 canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), { scaleX, scaleY });
                 backgroundImage = img;
-                saveCanvasState(); 
+                saveCanvasState();
             }, { crossOrigin: 'anonymous' });
         } else {
             saveCanvasState();

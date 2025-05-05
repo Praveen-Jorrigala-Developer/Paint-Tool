@@ -18,3 +18,17 @@ C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\bin\PaintTool.pdb
 C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
 C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.dll
 C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool\PaintTool\obj\Debug\PaintTool.pdb
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\bin\PaintTool.dll.config
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\bin\PaintTool.dll
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\bin\PaintTool.pdb
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.dll
+C:\Users\ADMIN\Downloads\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.pdb
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\bin\PaintTool.dll.config
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\bin\PaintTool.dll
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\bin\PaintTool.pdb
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.AssemblyReference.cache
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.csproj.CoreCompileInputs.cache
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.dll
+C:\Users\jorri\OneDrive\Desktop\OFF\PaintTool (2)\PaintTool\PaintTool\PaintTool\obj\Debug\PaintTool.pdb

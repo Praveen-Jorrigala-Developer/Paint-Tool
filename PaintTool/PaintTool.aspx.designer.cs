@@ -20,6 +20,8 @@ namespace PaintTool
 
         protected global::System.Web.UI.WebControls.Image UploadedImage;
 
-        protected global::System.Web.UI.WebControls.HiddenField UploadedImagePath;
+        protected global::System.Web.UI.WebControls.HiddenField UploadedImagePath; 
+
+        protected global::System.Web.UI.WebControls.HiddenField CanvasDataURL;
     }
 }
